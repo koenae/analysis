@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-df = pd.read_json("output.json")
+df = pd.read_json("output_be.json")
 
 labels = df.url
 target_and_ad = df.target_and_ad.values

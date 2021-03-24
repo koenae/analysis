@@ -7,12 +7,15 @@ def rounded_mean_value(value) -> int:
     return round(np.mean(value))
 
 
-df = pd.read_json("output.json")
+outDir = "/Users/koen/Documents/Research/"
 
-labels = ['Necessary', 'Target/Ad', 'Unknown']
-values = [rounded_mean_value(df.necessary), rounded_mean_value(df.target_and_ad), rounded_mean_value(df.unknown)]
+df = pd.read_json("output_fr_js_disabled.json")
+
+labels = ['Functionality', 'Necessary', 'Performance', 'Target/Ad', 'Unknown']
+values = [rounded_mean_value(df.functionality), rounded_mean_value(df.necessary), rounded_mean_value(df.performance), rounded_mean_value(df.target_and_ad), rounded_mean_value(df.unknown)]
 
 plt.bar(labels, values, align="center")
-plt.title("Belgium top 500 - means of cookie purposes before consent")
+plt.title("France top 500 - means of cookie purposes before consent - JS disabled")
 plt.tight_layout()
-plt.show()
+plt.savefig(outDir + "france_top_500_cookies_purposes_js_disabled")
+plt.clf()

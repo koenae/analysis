@@ -6,7 +6,7 @@ import json
 outDir = "/Users/koen/Documents/Research/"
 
 # Belgium
-openwpm_db_top500_be = "/Users/koen/Documents/Research/crawl-data.top500-be.sqlite"
+openwpm_db_top500_be = "/Users/koen/Documents/Research/france/crawl-data.top500-fr-cookies.sqlite"
 conn = sqlite3.connect(openwpm_db_top500_be)
 
 visits = pd.read_sql_query("select visit_id, site_url from site_visits", conn)
@@ -25,19 +25,25 @@ for _, row in visits.iterrows():
             df2.drop([df2.index[(df2["name"] == n)][0]], inplace=True)
             df1.drop([df1.index[(df1["name"] == n)][0]], inplace=True)
     cookie_names.update({row.site_url: list(df1.name.values)})
-    result.append([row.site_url, df1.shape[0]])
+    result.append([row.visit_id, df1.shape[0]])
 # print(result)
 df = pd.DataFrame(result, columns=['url', 'amount_of_cookies'])
+df.url = df.url.astype(str)
+
+# combine non-unique RN with groupby and sort by freq
+# dfg = df.groupby('url', as_index=False)['amount_of_cookies'].sum().sort_values('amount_of_cookies')
+df.sort_values(by=['amount_of_cookies'], inplace=True)
 
 # Draw and save figure
 outDir = "/Users/koen/Documents/Research/"
 _, ax = plt.subplots()
-ax.scatter(df.url, df.amount_of_cookies)
-ax.set_xlabel('Visit id from crawl')
-ax.set_ylabel("Number of cookies")
-ax.set_title("Belgium top 500 - cookies set")
+ax.scatter(df.amount_of_cookies, df.url)
+ax.set_xlabel('Number of cookies')
+ax.set_ylabel("Random visit id from crawl")
+ax.set_title("France top 500 - cookies set - JavaScript disabled")
+plt.yticks([])
 
-plt.savefig(outDir + "belgium_top_500_cookies_2")
+plt.savefig(outDir + "france_top_500_cookies_js_disabled_2")
 plt.clf()
 
 # Detect the purpose of the cookie names
