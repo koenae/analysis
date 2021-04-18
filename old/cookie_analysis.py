@@ -40,14 +40,14 @@ _, ax = plt.subplots()
 ax.scatter(df.amount_of_cookies, df.url)
 ax.set_xlabel('Number of cookies')
 ax.set_ylabel("Random visit id from crawl")
-ax.set_title("France top 500 - cookies set - JavaScript disabled")
+ax.set_title("France top 500 - cookies set")
 plt.yticks([])
 
-plt.savefig(outDir + "france_top_500_cookies_js_disabled_2")
+plt.savefig(outDir + "france_top_500_cookies_3")
 plt.clf()
 
 # Detect the purpose of the cookie names
 # print(cookie_names)
 # Export cookie names to json file
-with open('cookie_names.json', 'w') as fp:
+with open('../cookie_names/cookie_names.json', 'w') as fp:
     json.dump(cookie_names, fp)

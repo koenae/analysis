@@ -2,12 +2,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-df = pd.read_json("output_be.json")
+df = pd.read_json("../output/output_be.json")
 
 labels = df.url
-target_and_ad = df.target_and_ad.values
-necessary = df.necessary.values
-unknown = df.unknown.values
+target_and_ad = df.target_and_ad.values.sum()
+necessary = df.necessary.values.sum()
+unknown = df.unknown.values.sum()
 
 x = np.arange(len(labels))
 width = 0.35

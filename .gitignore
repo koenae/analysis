@@ -2,3 +2,6 @@
 .idea/
 /db
 /plots
+.DS_Store
+/cookie_names
+/output

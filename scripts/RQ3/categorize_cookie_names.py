@@ -12,8 +12,8 @@ def count_cookie_purposes(file_name):
     return [target_and_ad, necessary, unknown]
 
 
-belgium = count_cookie_purposes("output_be.json")
-france = count_cookie_purposes("output_fr.json")
+belgium = count_cookie_purposes("../../output/output_be.json")
+france = count_cookie_purposes("../../output/output_fr.json")
 
 data = [belgium, france]
 
