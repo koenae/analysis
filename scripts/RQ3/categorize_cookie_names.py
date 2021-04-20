@@ -12,8 +12,8 @@ def count_cookie_purposes(file_name):
     return [target_and_ad, necessary, unknown]
 
 
-belgium = count_cookie_purposes("../../output/output_be.json")
-france = count_cookie_purposes("../../output/output_fr.json")
+belgium = count_cookie_purposes("./cookiepedia_purposes/output_be.json")
+france = count_cookie_purposes("./cookiepedia_purposes/output_fr.json")
 
 data = [belgium, france]
 
@@ -23,4 +23,5 @@ df3.index = ['Belgium', 'France']
 
 fig = stacked_barplot(df3, rotation=45, legend_loc='best')
 plt.ylabel('Number of cookies')
-plt.show()
+plt.savefig("./plots/general/cookie_purposes")
+plt.clf()
