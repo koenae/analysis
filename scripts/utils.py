@@ -1,13 +1,9 @@
 import sqlite3
 
-import matplotlib.pyplot as plt
 import pandas as pd
-from mlxtend.plotting import ecdf
-
-outDir = "./plots/"
 
 
-def plot_ecdf(country):
+def get_amount_of_cookies(country):
     crawl_data = "./db/{}/crawl-data.top500.sqlite".format(country)
     conn = sqlite3.connect(crawl_data)
 
@@ -31,19 +27,6 @@ def plot_ecdf(country):
 
     df = pd.DataFrame(result, columns=['url', 'amount_of_cookies'])
     df.url = df.url.astype(str)
-
     df.sort_values(by=['amount_of_cookies'], inplace=True)
 
-    plt.figure(figsize=(9, 5))
-    _, threshold, count = ecdf(x=df.amount_of_cookies, x_label='number of cookies', percentile=0.8)
-
-    print("Threshold for {}: {}".format(country, threshold))
-    print("Count for {}: {}".format(country, count))
-
-    plt.savefig(outDir + "/{}/ecdf".format(country))
-    plt.clf()
-
-
-plot_ecdf("the_netherlands")
-plot_ecdf("belgium")
-plot_ecdf("france")
+    return df.amount_of_cookies
