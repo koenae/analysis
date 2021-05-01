@@ -33,8 +33,6 @@ def bootstrap_sampling_amount_of_cookies_means(country):
     lb = lower_bound(mean_of_sample_means, standard_error)
     ub = upper_bound(mean_of_sample_means, standard_error)
 
-    print("------------------------------------------")
-
     plot_distribution(country, original_mean, sample_means, lb, ub)
 
 
@@ -42,6 +40,8 @@ def plot_distribution(country, mean_of_sample_means, sample_means, lb, ub):
     fig_dims = (10, 6)
     fig, ax = plt.subplots(figsize=fig_dims)
     sns.kdeplot(sample_means, shade=True, ax=ax)
+    plt.xticks([7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12])
+    plt.xlim(7, 12)
     plt.axvline(x=mean_of_sample_means, linestyle='--', linewidth=2.5,
                 label="sample mean of number of cookies", c='black')
     plt.axvline(x=lb, linestyle='--', linewidth=2.5, label="lower bound 95% CI", c='g')

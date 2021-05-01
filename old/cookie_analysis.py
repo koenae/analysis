@@ -6,7 +6,7 @@ import json
 outDir = "/Users/koen/Documents/Research/"
 
 # Belgium
-openwpm_db_top500_be = "/Users/koen/Documents/Research/france/crawl-data.top500-fr-cookies.sqlite"
+openwpm_db_top500_be = "/Users/koen/Documents/Research/france/crawl-data-test.sqlite"
 conn = sqlite3.connect(openwpm_db_top500_be)
 
 visits = pd.read_sql_query("select visit_id, site_url from site_visits", conn)
@@ -24,6 +24,7 @@ for _, row in visits.iterrows():
         if n in df2.name.values:
             df2.drop([df2.index[(df2["name"] == n)][0]], inplace=True)
             df1.drop([df1.index[(df1["name"] == n)][0]], inplace=True)
+    df1.drop_duplicates(subset='name', keep='last', inplace=True)
     cookie_names.update({row.site_url: list(df1.name.values)})
     result.append([row.visit_id, df1.shape[0]])
 # print(result)
@@ -49,5 +50,5 @@ plt.clf()
 # Detect the purpose of the cookie names
 # print(cookie_names)
 # Export cookie names to json file
-with open('../cookie_names/cookie_names.json', 'w') as fp:
+with open('../cookie_names/cookie_names_test.json', 'w') as fp:
     json.dump(cookie_names, fp)

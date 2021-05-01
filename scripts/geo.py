@@ -21,5 +21,5 @@ fig = px.choropleth(df, geojson=countries, color="Number of cookies mean",
                     )
 fig.update_geos(fitbounds="locations", scope="europe", visible=False, showcountries=True, resolution=110,
                 countrycolor="Black")
-fig.update_layout(margin={"r": 0, "t": 200, "l": 0, "b": 200}, legend=dict(orientation="h"))
+fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0}, legend=dict(orientation="h"))
 fig.show()
