@@ -65,7 +65,7 @@ async function getPurposesFromCookiepedia(country) {
         });
     }
 
-    fs.writeFile('../../cookiepedia_purposes/' + country + '.json', JSON.stringify(result), function (err) {
+    fs.writeFile('../../cookiepedia_purposes/output_' + country + '.json', JSON.stringify(result), function (err) {
         if (err) throw err;
         console.log('complete');
     }
