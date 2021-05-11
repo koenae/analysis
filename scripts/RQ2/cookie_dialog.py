@@ -5,7 +5,7 @@ import pandas as pd
 
 
 def cookie_dialog(country):
-    db = "./db/{}/crawl-data.top500-fr-dialog.sqlite".format(country)
+    db = "./db/{}/crawl-data.sqlite".format(country)
     conn = sqlite3.connect(db)
 
     df1 = pd.read_sql_query(
@@ -46,6 +46,3 @@ def cookie_dialog(country):
     plt.savefig("./plots/{}/cookie_dialog".format(country))
     plt.clf()
     conn.close()
-
-
-cookie_dialog("france")

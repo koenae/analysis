@@ -5,7 +5,7 @@ import json
 
 
 def get_amount_of_cookies(country):
-    crawl_data = "./db/{}/crawl-data.top500.sqlite".format(country)
+    crawl_data = "./db/{}/crawl-data.sqlite".format(country)
     conn = sqlite3.connect(crawl_data)
 
     visits = pd.read_sql_query("select visit_id, site_url from site_visits", conn)

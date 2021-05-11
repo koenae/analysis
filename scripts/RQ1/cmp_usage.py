@@ -6,7 +6,7 @@ import pandas as pd
 
 
 def cmp_usage(country):
-    db = "./db/{}/crawl-data.top500.sqlite".format(country)
+    db = "./db/{}/crawl-data.sqlite".format(country)
     conn = sqlite3.connect(db)
 
     df = pd.read_sql_query(
@@ -24,8 +24,3 @@ def cmp_usage(country):
     plt.savefig("./plots/{}/cmp_usage".format(country))
     plt.clf()
     conn.close()
-
-
-cmp_usage("the_netherlands")
-cmp_usage("belgium")
-cmp_usage("france")

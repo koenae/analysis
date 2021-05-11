@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 
 (async => {
-    getPurposesFromCookiepedia('the_netherlands');
+    getPurposesFromCookiepedia(process.argv[2]);
 })();
 
 async function getPurposesFromCookiepedia(country) {
