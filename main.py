@@ -45,7 +45,7 @@ def run():
         # cmp_usage(country)
 
         # RQ2
-        # cookie_dialog(country)
+        cookie_dialog(country)
 
         # RQ3
         # number_of_cookies_ecdf(country)

@@ -5,7 +5,7 @@ import pandas as pd
 
 
 def cookie_dialog(country):
-    db = "./db/{}/crawl-data.sqlite".format(country)
+    db = "./db/{}/crawl-data-cookie-dialog.sqlite".format(country)
     conn = sqlite3.connect(db)
 
     df1 = pd.read_sql_query(
