@@ -19,16 +19,21 @@ def top_10_unknown_cookies(country):
     with open('./cookiepedia_purposes/unknown_{}.json'.format(country), 'w') as fp:
         json.dump(grouped_unknown_cookies, fp)
 
+    print('Top 10 cookies length: ' + str(sum(item for _, item in grouped_unknown_cookies[:10])))
+
     df2 = pd.DataFrame(grouped_unknown_cookies[:10], columns=['cookie_name', 'cookie_count'])
     df2.sort_values('cookie_count', inplace=True)
     y_pos = np.arange(len(df2.cookie_name))
     x_pos = np.arange(max(df2.cookie_count), step=5)
-    plt.barh(y_pos, df2.cookie_count, align='center')
+    plt.barh(y_pos, df2.cookie_count, align='center', color='grey')
     plt.yticks(y_pos, df2.cookie_name)
-    plt.xticks(x_pos)
     plt.xlabel('Count')
+    plt.xlim([0, 200])
     plt.tight_layout()
     plt.savefig('./plots/{}/unknown_cookies'.format(country))
 
 
+top_10_unknown_cookies("the_netherlands")
 top_10_unknown_cookies("belgium")
+top_10_unknown_cookies("united_kingdom")
+top_10_unknown_cookies("czech_republic")
