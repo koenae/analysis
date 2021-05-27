@@ -21,6 +21,9 @@ def cmp_usage(country):
     plt.xlabel("Count")
     plt.tight_layout()
 
+    print("{}: {}".format(country, df.cmp_name.values[-1]))
+
     plt.savefig("./plots/{}/cmp_usage".format(country))
     plt.clf()
     conn.close()
+    return sum(df.count_cmp.values)

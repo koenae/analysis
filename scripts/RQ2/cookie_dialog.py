@@ -4,8 +4,11 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-def cookie_dialog(country):
-    db = "./db/{}/crawl-data-cookie-dialog.sqlite".format(country)
+def cookie_dialog(country, js_disabled=False):
+    if js_disabled:
+        db = "./db/{}/crawl-data-cookie-dialog-no-js.sqlite".format(country)
+    else:
+        db = "./db/{}/crawl-data-cookie-dialog.sqlite".format(country)
     conn = sqlite3.connect(db)
 
     df1 = pd.read_sql_query(
@@ -43,6 +46,9 @@ def cookie_dialog(country):
     ax.pie(sizes, labels=labels, autopct='%1.1f%%', colors=colors)
     plt.tight_layout()
 
-    plt.savefig("./plots/{}/cookie_dialog".format(country))
+    if js_disabled:
+        plt.savefig("./plots/{}/cookie_dialog_no_js".format(country))
+    else:
+        plt.savefig("./plots/{}/cookie_dialog".format(country))
     plt.clf()
     conn.close()

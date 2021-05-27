@@ -7,6 +7,7 @@ import os
 
 
 def run():
+    cmp_count_total = 0
     countries = ['the_netherlands',
                  'belgium',
                  'france',
@@ -42,14 +43,20 @@ def run():
             os.makedirs('./plots/{}'.format(country))
 
         # RQ1
-        # cmp_usage(country)
+        cmp_usage(country)
+        # cmp_count = cmp_usage(country)
+        # print("{}: {}".format(country, cmp_count))
+        # cmp_count_total += cmp_count
 
         # RQ2
-        cookie_dialog(country)
+        # cookie_dialog(country)
 
         # RQ3
         # number_of_cookies_ecdf(country)
         # bootstrap_sampling_amount_of_cookies_means(country)
+
+    # print(str(cmp_count_total))
+    # print(str(cmp_count_total / 30))
 
 
 run()

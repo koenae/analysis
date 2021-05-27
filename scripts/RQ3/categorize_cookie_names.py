@@ -19,7 +19,6 @@ def count_cookie_purposes(country, country_view_name):
 
 
 austria = count_cookie_purposes('austria', 'Austria')
-belgium = count_cookie_purposes('belgium', 'Belgium')
 bulgaria = count_cookie_purposes('bulgaria', 'Bulgaria')
 croatia = count_cookie_purposes('croatia', 'Croatia')
 cyprus = count_cookie_purposes('cyprus', 'Cyprus')
@@ -49,7 +48,7 @@ switzerland = count_cookie_purposes('switzerland', 'Switzeland')
 netherlands = count_cookie_purposes('the_netherlands', 'Netherlands')
 united_kingdom = count_cookie_purposes('united_kingdom', 'United Kingdom')
 
-data = [austria, belgium, bulgaria, croatia, cyprus, czech_republic, denmark, estonia, finland,
+data = [austria, bulgaria, croatia, cyprus, czech_republic, denmark, estonia, finland,
         france, germany, greece, hungary, ireland, italy, latvia, lithuania, luxembourg, malta, norway, poland,
         portugal, romania, slovakia, slovenia, spain, sweden, switzerland, netherlands, united_kingdom]
 
