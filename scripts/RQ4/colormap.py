@@ -9,7 +9,10 @@ outDir = "./plots/"
 
 
 def color_map(country, reject=False):
-    db = "./db/{}/crawl-data-dp.sqlite".format(country)
+    if country == "denmark":
+        return
+
+    db = "./db/{}/crawl-data-dark-patterns.sqlite".format(country)
     conn = sqlite3.connect(db)
 
     if not reject:
@@ -52,6 +55,9 @@ def color_map(country, reject=False):
     colors = ["#FF0000", "#00FF00", "#0000FF"]
     rgb_palette = sns.set_palette(sns.color_palette(colors))
 
+    if len(r_values) == 0 and len(g_values) == 0 and len(b_values) == 0:
+        return
+
     sns.histplot(data={"Red": r_values, "Green": g_values, "Blue": b_values}, palette=rgb_palette, fill=False,
                  multiple="stack")
     plt.ylim(0, 150 if not reject else 70)
@@ -59,10 +65,4 @@ def color_map(country, reject=False):
     plt.clf()
 
 
-color_map("the_netherlands")
-color_map("belgium")
-color_map("france")
-
-color_map("the_netherlands", True)
-color_map("belgium", True)
-color_map("france", True)
+color_map("poland", True)

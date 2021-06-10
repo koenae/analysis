@@ -2,6 +2,7 @@ from scripts.RQ1.cmp_usage import cmp_usage
 from scripts.RQ2.cookie_dialog import cookie_dialog
 from scripts.RQ3.bootstrap import bootstrap_sampling_amount_of_cookies_means
 from scripts.RQ3.number_of_cookies_ecdf import number_of_cookies_ecdf
+from scripts.RQ4.colormap import color_map
 
 import os
 
@@ -42,8 +43,10 @@ def run():
         if not os.path.exists('./plots/{}'.format(country)):
             os.makedirs('./plots/{}'.format(country))
 
+        print(country)
+
         # RQ1
-        cmp_usage(country)
+        # cmp_usage(country)
         # cmp_count = cmp_usage(country)
         # print("{}: {}".format(country, cmp_count))
         # cmp_count_total += cmp_count
@@ -54,6 +57,9 @@ def run():
         # RQ3
         # number_of_cookies_ecdf(country)
         # bootstrap_sampling_amount_of_cookies_means(country)
+
+        # RQ4
+        color_map(country, True)
 
     # print(str(cmp_count_total))
     # print(str(cmp_count_total / 30))
