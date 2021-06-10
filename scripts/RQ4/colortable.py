@@ -4,7 +4,7 @@ import numpy as nps
 import sqlite3
 import pandas as pd
 
-db = "./db/{}/crawl-data-dark-patterns.sqlite".format("the_netherlands")
+db = "./db/{}/crawl-data-dark-patterns.sqlite".format("france")
 conn = sqlite3.connect(db)
 
 query_consent = "select * from dark_patterns where allow_height < 100 and allow_height != 0 and allow_text != '' and " \
@@ -28,7 +28,7 @@ reject = []
 id = []
 
 for index, item in df_reject.iterrows():
-    if item.allow_exists == 1 and (item.allow_rgb != 'rgba(0, 0, 0, 0)' and item.allow_rgb != 'rgb(0, 0, 0)' and item.allow_rgb != 'rgb(255, 255, 255)' and item.reject_rgb != 'rgba(0, 0, 0, 0)' and item.reject_rgb != 'rgb(0, 0, 0)' and item.reject_rgb != 'rgb(255, 255, 255)'):
+    if item.allow_exists == 1 and (item.allow_rgb != 'rgba(0, 0, 0, 0)' and item.allow_rgb != 'rgb(0, 0, 0)' and item.allow_rgb != 'rgb(255, 255, 255)' and item.reject_rgb != 'rgba(0, 0, 0, 0)' and item.reject_rgb != 'rgb(0, 0, 0)' and item.reject_rgb != 'rgb(255, 255, 255)' and item.allow_rgb != item.reject_rgb):
         print("allowRGB: {} - rejectRGB: {}".format(item.allow_rgb, item.reject_rgb))
         id.append(item.visit_id)
         consent.append(item.allow_rgb)
