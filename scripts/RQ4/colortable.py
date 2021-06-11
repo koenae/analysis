@@ -1,6 +1,4 @@
 import plotly.graph_objects as go
-from plotly.colors import n_colors
-import numpy as nps
 import sqlite3
 import pandas as pd
 
