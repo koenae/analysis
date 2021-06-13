@@ -31,13 +31,39 @@ def count_elements(country, country_view_name):
     return [int(consent.total), int(reject.total), country_view_name]
 
 
-belgium = count_elements("belgium", "Belgium")
-the_netherlands = count_elements("the_netherlands", "The Netherlands")
-france = count_elements("france", "France")
-germany = count_elements("germany", "Germany")
-united_kingdom = count_elements("united_kingdom", "United Kingdom")
+austria = count_elements('austria', 'Austria')
+austria = count_elements('belgium', 'Belgium')
+bulgaria = count_elements('bulgaria', 'Bulgaria')
+croatia = count_elements('croatia', 'Croatia')
+cyprus = count_elements('cyprus', 'Cyprus')
+czech_republic = count_elements('czech_republic', 'Czech Republic')
+estonia = count_elements('estonia', 'Estonia')
+finland = count_elements('finland', 'Finland')
+france = count_elements('france', 'France')
+germany = count_elements('germany', 'Germany')
+greece = count_elements('greece', 'Greece')
+hungary = count_elements('hungary', 'Hungary')
+ireland = count_elements('ireland', 'Ireland')
+italy = count_elements('italy', 'Italy')
+latvia = count_elements('latvia', 'Latvia')
+lithuania = count_elements('lithuania', 'Lithuania')
+luxembourg = count_elements('luxembourg', 'Luxembourg')
+malta = count_elements('malta', 'Malta')
+norway = count_elements('norway', 'Norway')
+poland = count_elements('poland', 'Poland')
+portugal = count_elements('portugal', 'Portugal')
+romania = count_elements('romania', 'Romania')
+slovakia = count_elements('slovakia', 'Slovakia')
+slovenia = count_elements('slovenia', 'Slovenia')
+spain = count_elements('spain', 'Spain')
+sweden = count_elements('sweden', 'Sweden')
+switzerland = count_elements('switzerland', 'Switzeland')
+netherlands = count_elements('the_netherlands', 'Netherlands')
+united_kingdom = count_elements('united_kingdom', 'United Kingdom')
 
-data = [belgium, the_netherlands, france, germany, united_kingdom]
+data = [austria, bulgaria, croatia, cyprus, czech_republic, estonia, finland,
+        france, germany, greece, hungary, ireland, italy, latvia, lithuania, luxembourg, malta, norway, poland,
+        portugal, romania, slovakia, slovenia, spain, sweden, switzerland, netherlands, united_kingdom]
 
 sorted_data = sorted(data, key=lambda row: sum([row[0], row[1]]))
 
@@ -57,6 +83,5 @@ df3.index = index
 ax = df3.plot.barh(stacked=True, color=['green', 'red'])
 ax.figure.set_size_inches(10, 6)
 plt.xlabel('Number of elements')
-plt.show()
-# plt.savefig("./plots/general/cookie_purposes")
-# plt.clf()
+plt.savefig("./plots/general/amount_of_elements")
+plt.clf()

@@ -3,6 +3,7 @@ from scripts.RQ2.cookie_dialog import cookie_dialog
 from scripts.RQ3.bootstrap import bootstrap_sampling_amount_of_cookies_means
 from scripts.RQ3.number_of_cookies_ecdf import number_of_cookies_ecdf
 from scripts.RQ4.colormap import color_map
+from scripts.RQ4.colortable import color_table
 
 import os
 
@@ -59,7 +60,8 @@ def run():
         # bootstrap_sampling_amount_of_cookies_means(country)
 
         # RQ4
-        color_map(country, True)
+        # color_map(country, True)
+        color_table(country)
 
     # print(str(cmp_count_total))
     # print(str(cmp_count_total / 30))
