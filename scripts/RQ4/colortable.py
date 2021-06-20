@@ -9,7 +9,7 @@ def color_table(country):
     if country == "denmark":
         return
 
-    db = "./db/{}/crawl-data-dark-patterns.sqlite".format(country)
+    db = "./db/{}/crawl-data-dark-patterns_with_context.sqlite".format(country)
     conn = sqlite3.connect(db)
 
     query_reject = "select * from dark_patterns where reject_text != '' and length(reject_text) < 30 and reject_text " \
@@ -23,6 +23,7 @@ def color_table(country):
 
     consent = []
     reject = []
+    context = []
     width_difference = []
     height_difference = []
     id = []
@@ -33,23 +34,31 @@ def color_table(country):
             id.append(item.visit_id)
             consent.append(item.allow_rgb)
             reject.append(item.reject_rgb)
+            context.append(item.context_rgb)
             width_difference.append(int(item.allow_width) - int(item.reject_width))
             height_difference.append(int(item.allow_height) - int(item.reject_height))
 
     fig = go.Figure(data=[go.Table(
+        columnwidth=[5, 5, 5, 5, 10, 10],
         header=dict(
-            values=['<b>ID</b>', '<b>Consent</b>', '<b>Reject</b>', '<b>Width difference</b>',
-                    '<b>Height difference</b>'],
+            values=['<b>ID</b>', '<b>Background</b>', '<b>Consent</b>', '<b>Reject</b>', '<b>Consent - reject (width)</b>',
+                    '<b>Consent - reject (height)</b>'],
             line_color='white', fill_color='white',
             align='center', font=dict(color='black', size=12)
         ),
         cells=dict(
-            values=[id, consent, reject, width_difference, height_difference],
-            line_color=['rgb(255,255,255)', consent, reject, 'rgb(255,255,255)', 'rgb(255,255,255)'],
-            fill_color=['rgb(255,255,255)', consent, reject, 'rgb(255,255,255)', 'rgb(255,255,255)'],
-            align='center', font=dict(color='black', size=11)
+            values=[id, '', '', '', width_difference, height_difference],
+            line_color=['rgb(255,255,255)', 'rgb(255,255,255)', 'rgb(255,255,255)', 'rgb(255,255,255)', 'rgb(255,255,255)', 'rgb(255,255,255)'],
+            fill_color=['rgb(255,255,255)', context, consent, reject, 'rgb(255,255,255)', 'rgb(255,255,255)'],
+            align='right', font=dict(color='black', size=11)
         ))
     ])
     fig.update_layout(title_text=country)
 
     fig.show()
+
+
+color_table("the_netherlands")
+color_table("france")
+color_table("ireland")
+color_table("austria")
