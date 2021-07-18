@@ -28,11 +28,13 @@ def count_elements(country, country_view_name):
         conn
     )
 
+    print(country_view_name + ": consent {} - reject {}".format(int(consent.total), int(reject.total)))
+
     return [int(consent.total), int(reject.total), country_view_name]
 
 
 austria = count_elements('austria', 'Austria')
-austria = count_elements('belgium', 'Belgium')
+belgium = count_elements('belgium', 'Belgium')
 bulgaria = count_elements('bulgaria', 'Bulgaria')
 croatia = count_elements('croatia', 'Croatia')
 cyprus = count_elements('cyprus', 'Cyprus')
@@ -61,7 +63,7 @@ switzerland = count_elements('switzerland', 'Switzerland')
 netherlands = count_elements('the_netherlands', 'Netherlands')
 united_kingdom = count_elements('united_kingdom', 'United Kingdom')
 
-data = [austria, bulgaria, croatia, cyprus, czech_republic, estonia, finland,
+data = [austria, belgium, bulgaria, croatia, cyprus, czech_republic, estonia, finland,
         france, germany, greece, hungary, ireland, italy, latvia, lithuania, luxembourg, malta, norway, poland,
         portugal, romania, slovakia, slovenia, spain, sweden, switzerland, netherlands, united_kingdom]
 
@@ -69,8 +71,18 @@ sorted_data = sorted(data, key=lambda row: sum([row[0], row[1]]))
 
 # Extract the country names
 index = []
+total = 0
+consentTotal = 0
+rejectTotal = 0
 for element in sorted_data:
+    total += (element[0] + element[1])
+    consentTotal += element[0]
+    rejectTotal += element[1]
     index.append(element[2])
+
+print('mean: ', total / 29)
+print('consent mean: ', consentTotal / 29)
+print('reject mean: ', rejectTotal / 29)
 
 # Delete the country names as we do not want to pass it as a column
 view_data = np.delete(np.array(sorted_data, dtype='object'), 2, 1)
@@ -80,7 +92,7 @@ df3.columns = ['Consent', 'Reject']
 
 df3.index = index
 
-ax = df3.plot.barh(stacked=True, color=['green', 'red'])
+ax = df3.plot.barh(stacked=False, color=['green', 'red'])
 ax.figure.set_size_inches(10, 6)
 plt.xlabel('Number of HTML elements')
 plt.savefig("./plots/general/amount_of_elements")

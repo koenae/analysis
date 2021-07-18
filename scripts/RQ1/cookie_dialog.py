@@ -4,9 +4,11 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-def cookie_dialog(country, js_disabled=False):
+def cookie_dialog(country, js_disabled=False, ublock=False):
     if js_disabled:
         db = "./db/{}/crawl-data-cookie-dialog-no-js.sqlite".format(country)
+    elif ublock:
+        db = "./db/{}/crawl-data-cookie-dialog-ublock.sqlite".format(country)
     else:
         db = "./db/{}/crawl-data-cookie-dialog.sqlite".format(country)
     conn = sqlite3.connect(db)
@@ -42,13 +44,18 @@ def cookie_dialog(country, js_disabled=False):
     sizes = [df1.count_frames[0], df2.count_classes[0], df3.count_ids[0], df4.count_unknown[0]]
     colors = ['silver', 'grey', 'dimgrey', 'red']
     print(sizes)
+    plt.rcParams.update({'font.size': 12})
     fig, ax = plt.subplots()
     ax.pie(sizes, labels=labels, autopct='%1.1f%%', colors=colors)
     plt.tight_layout()
 
     if js_disabled:
-        plt.savefig("./plots/{}/cookie_dialog_no_js".format(country))
+        plt.savefig("./plots/{}/new_cookie_dialog_no_js".format(country))
+    elif ublock:
+        plt.savefig("./plots/{}/new_cookie_dialog_ublock".format(country))
     else:
-        plt.savefig("./plots/{}/cookie_dialog".format(country))
+        plt.savefig("./plots/{}/new_cookie_dialog".format(country))
     plt.clf()
     conn.close()
+    # return df1.count_frames[0] + df2.count_classes[0] + df3.count_ids[0] + df4.count_unknown[0]
+    # return ((df1.count_frames[0] + df2.count_classes[0] + df3.count_ids[0]) / (df1.count_frames[0] + df2.count_classes[0] + df3.count_ids[0] + df4.count_unknown[0])) * 100

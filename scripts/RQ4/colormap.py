@@ -63,6 +63,3 @@ def color_map(country, reject=False):
     plt.ylim(0, 150 if not reject else 70)
     plt.savefig(outDir + "/{}/{}_colormap".format(country, "allow" if not reject else "reject"))
     plt.clf()
-
-
-color_map("poland", True)

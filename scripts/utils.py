@@ -31,7 +31,7 @@ def get_amount_of_cookies(country):
     df.url = df.url.astype(str)
     df.sort_values(by=['amount_of_cookies'], inplace=True)
 
-    with open('./cookie_names/{}.json'.format(country), 'w') as fp:
+    with open('./cookie_names/{}_new.json'.format(country), 'w') as fp:
         json.dump(cookie_names, fp)
 
     return df.amount_of_cookies

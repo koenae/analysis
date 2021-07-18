@@ -56,9 +56,3 @@ def color_table(country):
     fig.update_layout(title_text=country)
 
     fig.show()
-
-
-color_table("the_netherlands")
-color_table("france")
-color_table("ireland")
-color_table("austria")
